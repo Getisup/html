@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Thais!!</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        .container {
+            position: relative;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .image {
+            max-width: 80%; /* Ajuste da largura da imagem */
+            height: auto;
+            position: relative;
+            z-index: 1; /* Imagem com prioridade mais baixa */
+        }
+        .message {
+            font-size: 24px;
+            color: #FFD700; /* Cor dourada */
+            margin-top: 20px;
+        }
+        h1 {
+            font-size: 32px;
+            color: #FFD700; /* Cor dourada */
+            margin: 20px 0;
+        }
+        .words-list {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            z-index: 2;
+        }
+        .word {
+            opacity: 0;
+            animation: fadeInOut 5s forwards; /* Animação de aparecimento e desaparecimento */
+        }
+        .word-container {
+            background-color: rgba(0, 0, 0, 0.7); /* Fundo preto com transparência */
+            display: inline-block;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(100%); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-100%); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Aeeee Thais!!</h1>
+    <div class="container">
+        <img src="https://dl.dropboxusercontent.com/scl/fi/q1cc6y8r37hgabqeub1sx/image_no_background.png?rlkey=twm04tvmou8q1ntd1l0ma0k5v&st=fn23gqnk&dl=0" alt="Thais" class="image">
+    </div>
+    <div class="message">Continue a brilhar e fazendo a diferença na vida de todos ao seu redor!</div>
+
+    <!-- Lista de palavras que será escrita gradualmente -->
+    <div class="words-list" id="wordsList"></div>
+
+    <script>
+        const words = [
+            "Incrível", "Inteligente", "Empoderada", "Linda", "Criativa",
+            "Determinada", "Carismática", "Amável", "Inspiradora", "Corajosa",
+            "Elegante", "Generosa", "Sensacional", "Dedicada", "Confiante",
+            "Gentil", "Divertida", "Brilhante", "Autêntica", "Forte",
+            "Charmosa", "Diva", "Radiantes", "Talentosa", "Atraente",
+            "Sábia", "Empática", "Amiga", "Vibrante", "Leal",
+            "Sonhadora", "Estilosa", "Competente", "Humorística", "Atenciosa",
+            "Impactante", "Extraordinária", "Persuasiva", "Motivadora", "Generosa",
+            "Diligente", "Habilidosa", "Compreensiva", "Positiva", "ThorZinho",
+            "Brava", "Estimulante", "Ousada", "Poderosa", "Visionária",
+            "Resiliente", "Equilibrada", "Simpática", "Vibrante", "Graciosa",
+            "Exuberante", "Solidária", "Ponderada", "Cativante", "Entusiasmada",
+            "Espontânea", "Valiosa", "Zelosa"
+        ];
+
+        const wordsList = document.getElementById("wordsList");
+        let wordIndex = 0;
+
+        function showWord() {
+            // Cria um novo elemento de palavra
+            const wordContainer = document.createElement("div");
+            const wordSpan = document.createElement("span");
+            wordContainer.classList.add("word-container");
+            wordSpan.classList.add("word");
+            wordSpan.textContent = words[wordIndex];
+            wordContainer.appendChild(wordSpan);
+            wordsList.appendChild(wordContainer);
+
+            // Remove a palavra anterior após o tempo da animação
+            setTimeout(() => {
+                wordsList.removeChild(wordContainer);
+            }, 5000); // Remove a palavra após 5 segundos
+
+            // Atualiza o índice da palavra
+            wordIndex = (wordIndex + 1) % words.length; // Reinicia no início quando chegar ao fim
+
+            // Chama a função novamente após 5 segundos
+            setTimeout(showWord, 5000);
+        }
+
+        setTimeout(showWord, 3000); // Inicia a animação após 3 segundos
+    </script>
+</body>
+</html>
